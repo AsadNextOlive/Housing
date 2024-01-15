@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="border rounded">
+        <div class="header text-center p-1">
+            <h6>Login Form</h6>
+        </div>
+        <div class="border p-2">
+            <!-- Template Driven Form -->
+            <form #loginForm='ngForm' (ngSubmit)="onLogin(loginForm)">
+                <div class="input-container">
+                    <input type="text" id="userName" required ngModel name="userName">
+                    <label for="userName" class="label">Username</label>
+                    <div class="underline"></div>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="password" required ngModel name="password">
+                    <label for="password" class="label">Password</label>
+                    <div class="underline"></div>
+                </div>
+                <div class="form-group col-12">
+                    <button [disabled]="!loginForm.valid" type="submit" class="button">Save</button>
+                    <button type="reset" class="button m-lg-2">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

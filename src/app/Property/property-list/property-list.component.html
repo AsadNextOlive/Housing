@@ -1,0 +1,55 @@
+<!-- Using Pipe | in Angular
+If we need to use any parameter multiple times but in a same component and
+need to display differently one of those parameter will use pipe -->
+<!-- We can create our own pipes as well or there are pre created pipes which angular provides -->
+
+<!-- Current Data (India) {{Today|date:'medium'|uppercase}} <br>  Here |date: 'medium' and |uppercase (pre-defined) is pipe to display date -->
+<!-- Current Date (France) {{Today|date: 'medium':'GMT+2'|uppercase}} -->
+
+<!-- Filter/Sorting -->
+<div class="row mb-4 resp-container">
+    <div class="col-8 d-flex resp-left">
+        <div class="input-container">
+            <input type="text" name="text" class="input resp-input" [(ngModel)]='City' placeholder="Filter City">
+            <span class="icon">
+                <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                        <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                            stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+            </span>
+        </div>
+        <button class="button resp-btn" (click)="onCityFilterClear()"><i class="fa-solid fa-filter mr-1 resp-icon-filter"></i>Clear</button>
+        
+    </div>
+    <div class="col-4 text-end resp-right">
+        <label>
+            <h6>Sort by &nbsp;</h6>
+        </label>
+        <select class="padding" [(ngModel)]='SortbyParam'>
+            <option value="Price">Price</option>
+            <option value="City">City</option>
+        </select>
+        <button type="button" class="resp-icon-sohrt" (click)="onSortDirection()">
+            <i *ngIf="SortDirection==='asc'" class="fas fa-sort-alpha-down"></i>
+            <i *ngIf="SortDirection==='desc'" class="fas fa-sort-alpha-up"></i>
+        </button>
+    </div>
+</div>
+<!-- Filter/Sorting -->
+
+<div class="d-flex flex-wrap justify-content-between">
+    <!-- Using pipe |filter:'' -->
+    <div *ngFor="let Property of properties|filter:City:'City'|sort:['Price','desc']" class="shadow-lg p-2 mb-4">
+        <app-property-cart [property]="Property"></app-property-cart>
+    </div>
+</div>

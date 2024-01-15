@@ -1,0 +1,63 @@
+.crd h2{
+    /* font-family: fantasy;
+    color: #147775; */
+    background-image: linear-gradient(60deg, #147775, #58a1a0c2);
+    background-clip: text;
+    color: transparent;
+    font-family: fantasy;
+}
+
+.font-highlight{
+    font-style: italic;
+    background-image: linear-gradient(60deg, #0c6361, #219290);
+    background-clip: text;
+    color: transparent;
+}
+
+.propImg{
+    width: 270px;
+    height: 265px;
+    border-radius: 4px;
+}
+
+.img-wrapper{
+    overflow: hidden;
+    position: relative;
+}
+
+.crd img{
+    transform: scale(1,1);
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
+}
+
+.crd:hover img{
+    transform: scale(1.2,1.2);
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
+    opacity: 0.4;
+}
+
+.crd:hover .member-icon{
+    bottom: 0;
+}
+
+
+.member-icon{
+    position: absolute;
+    bottom: -10;
+    /* left: 50%; */
+    right: 35%;
+} 
+
+.bg-color{
+    color: #fff;
+    background-color: #4ea7a4;
+    box-shadow: inset 0 0 1.6em -0.1em #086866;
+    border: 0;
+}
+
+.bg-color:hover{
+    color: #000;
+}
+   

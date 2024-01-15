@@ -1,0 +1,221 @@
+.cssbuttons-io-button {
+  /* background: #a370f0; */
+  background: #C0EDEC;
+  color: #000;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #6aa5a4;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+  cursor: pointer;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #6aa5a4;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+.ml-1 {
+  margin-left: 10px !important;
+}
+
+.mr-1 {
+  margin-left: 10px !important;
+}
+
+
+.photo-control {
+  min-height: 300px;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px dashed black;
+  margin: 5px;
+}
+
+.bg-color {
+  background-color: #C0EDEC;
+  color: black;
+  box-shadow: inset 0 0 1.6em -0.6em #1fafad;
+  border: 0;
+}
+
+.bg-color:hover {
+  color: #000;
+  background-color: #57c4c0;
+  box-shadow: inset 0 0 1.6em -0.1em #147775;
+
+}
+
+.radio-active,
+.radio-active-bhk,
+.radio-active-pType,
+.radio-active-ftype,
+.radio-active-gCommunity,
+.radio-active-RTM,
+.radio-active-MainEntrance {
+  color: #fff;
+  background-color: #57c4c0;
+  box-shadow: inset 0 0 1.6em -0.1em #147775;
+}
+
+::ng-deep .theme-green {
+  .bs-datepicker-body {
+    table {
+      td {
+        span.selected {
+          background-color: #57c4c0 !important;
+          box-shadow: inset 0 0 1.6em -0.1em #147775;
+        }
+      }
+    }
+  }
+}
+
+
+
+/* ---------------------------------------- */
+
+.tab-panel {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  min-height: 600px;
+  background-color: white;
+}
+
+.nav-tabs>li.open,
+.member-tabset>.nav-tabs>li:hover {
+  border-bottom: 4px solid #e1e2eb;
+}
+
+.member-tabset>.nav-tabs>li.open>a,
+.member-tabset>.nav-tabs>li:hover>a {
+  border: 0;
+  background: none !important;
+  color: #333333;
+}
+
+.member-tabset>.nav-tabs>li.open>a>i,
+.member-tabset>.nav-tabs>li:hover>a>i {
+  color: #a6a6a6;
+}
+
+.member-tabset>.nav-tabs>li.open .dropdown-menu,
+.member-tabset>.nav-tabs>li:hover .dropdown-menu {
+  margin-top: 0px;
+}
+
+.member-tabset>.nav-tabs>li.active {
+  border-bottom: 4px solid #0069d9;
+  position: relative;
+}
+
+.member-tabset>.nav-tabs>li.active>a {
+  border: 0 !important;
+  color: #333333;
+}
+
+.member-tabset>.nav-tabs>li.active>a>i {
+  color: #404040;
+}
+
+.member-tabset>.tab-content {
+  margin-top: -3px;
+  background-color: #fff;
+  border: 0;
+  border-top: 1px solid #eee;
+  padding: 15px 0;
+}
+
+@media Only Screen and (max-width: 990px){
+  .resp-container{
+    width: 100% !important;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+  }
+
+  .resp-left{
+    width: 60% !important;
+  }
+
+  .resp-right{
+    width: 40% !important;
+    padding: 0 !important;
+    margin-bottom: 10px;
+  }
+}
+
+@media Only Screen and (max-width: 770px){
+  .resp-container{
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .resp-left{
+    width: 100% !important;
+  }
+
+  .resp-right{
+    width: 100% !important;
+  }
+}
+
+@media Only Screen and (max-width: 370px){
+  .resp-r-btn{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px !important;
+  }
+}
+
+@media Only Screen and (max-width: 425px){
+  .resp-container-btn{
+    width: 60% !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resp-btn{
+    margin: 2px 0px !important;
+
+  }
+}

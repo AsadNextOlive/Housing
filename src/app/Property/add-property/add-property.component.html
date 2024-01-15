@@ -1,0 +1,473 @@
+<!-- <p>add-property works!</p>
+<button (click)="onBack()" class="btn btn-outline-secondary">Back</button>
+<br> -->
+<!-- <h6 class="text-center">Template Driven</h6> -->
+<div class="row resp-container">
+  <div class="col-8 resp-left">
+    <div class="border rounded shadow mb-3">
+
+      <form (ngSubmit)='onSubmit()' [formGroup]="addPropertyForm">
+        <div class="tab-panel">
+          <tabset class="member-tabset" #formTabs>
+            <tab heading="Basic Info" formGroupName="BasicInfo">
+              <div class="form-group col-12 mb-3">
+              <p>I want to</p>
+                <div class="btn-group ml-1"
+                btnRadioGroup
+                formControlName="SellRent">
+                  <!-- <label class="btn btn-outline-primary mr-2"
+                  btnRadio=1 tabindex="0" role="button" name="SellRent">Sell</label> -->
+                  <label class="btn btn-outline-primary bg-color " 
+                    [class.radio-active]="selectedSellRentOption === 1"
+                    (click)="selectSellRentOption(1)" btnRadio="1" tabindex="0" role="button"
+                    name="SellRent">Sell</label>
+                  <!-- <label class="btn btn-outline-primary"
+                  btnRadio=2  tabindex="0" role="button" name="SellRent">Rent</label> -->
+                  <label class="btn btn-outline-primary bg-color ml-1"
+                    [class.radio-active]="selectedSellRentOption === 2" 
+                    (click)="selectSellRentOption(2)" btnRadio="2" tabindex="0" role="button"
+                    name="SellRent">Rent</label>
+                </div>
+                <div class="error-block" *ngIf="SellRent.invalid && nextClicked">
+                  Please select sell or rent
+                </div>
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <p>BHK</p>
+                <div class="btn-group resp-r-btn" btnRadioGroup
+                formControlName="BHK"
+                [(ngModel)]="propertyView.BHK" name="BHK">
+                  <label
+                    *ngFor="let bhk of [1,2,3,4]"
+                    class="btn btn-outline-primary bg-color ml-1"
+                    [class.radio-active-bhk]="selectedBHKOption === bhk" (click)="selectBHKOption(bhk)"
+                    [btnRadio]="bhk" tabindex="0" role="button"
+                    name="BHK">
+                    {{bhk}}
+                  </label>
+                </div>
+                <div class="error-block" *ngIf="BHK.invalid && nextClicked">
+                  Please select BHK
+                </div>
+              </div>
+
+              <div class="form-group col-12">
+                <p>Property Type</p>
+                <div class="btn-group mb-4 resp-r-btn" btnRadioGroup
+                formControlName='PType'
+                [(ngModel)]="propertyView.PType">
+                  <label
+                  *ngFor="let ptype of propertyTypes"
+                  class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-pType]="selectedPropertyTypeOption === ptype"
+                    (click)="selectePropertyTypeOption(ptype)"
+                  [btnRadio]="ptype" tabindex="0" role="button"
+                  name="PropType">{{ptype}}
+                </label>
+                </div>
+                <div class="error-block" *ngIf="PType.invalid && nextClicked">
+                  Please select property type
+                </div>
+              </div>
+
+              <div class="form-group col-12">
+                <p>Furnishing Type</p>
+                <div class="btn-group mb-4 resp-r-btn" btnRadioGroup
+                formControlName="FType"
+                [(ngModel)]="propertyView.FType">
+                <label
+                  *ngFor="let ftype of furnishTypes"
+                  class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-ftype]="selectedFurnishedypeOption === ftype"
+                    (click)="selecteFurnishedTypeOption(ftype)"
+                  [btnRadio]="ftype" tabindex="0" role="button"
+                  name="FurnishType">
+                  {{ftype}}
+                </label>
+                </div>
+                <div class="error-block" *ngIf="FType.invalid && nextClicked">
+                  Please select furnishing type
+                </div>
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <label>in Building/Society/Project</label>
+                <input type="text" class="form-control"
+                ngModel
+                formControlName="Name"
+                [(ngModel)]="propertyView.Name">
+                <div class="error-block"
+                *ngIf="Name.invalid && (nextClicked || Name.touched)">
+                  Please select building, society or project name
+                </div>
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <label>City</label>
+                <input type="text"
+                class="form-control"
+                formControlName="City"
+                [(ngModel)]="propertyView.City">
+                <div class="error-block"
+                *ngIf="City.invalid && (nextClicked || City.touched)">
+                  Please select city
+                </div>
+              </div>
+
+              <!-- <div class="form-group col-12">
+                  <button type="button"
+                  class="btn btn-primary btn-block"
+                  (click)="selectTab(1, BasicInfo.valid)">Next</button>
+              </div> -->
+
+              <div class="form-group col-12">
+                <!-- <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(1, BasicInfo.valid)">Next</button> -->
+                <button class="cssbuttons-io-button" type="button" (click)="selectTab(1, BasicInfo.valid)">
+                  Next
+                  <div class="icon">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </div>
+                </button>
+
+                <!-- <button type="button" class="btn btn-primary btn-block">Next</button> -->
+              </div>
+            </tab>
+
+            <tab heading="Pricing and Area" formGroupName="PriceInfo">
+                <div class="form-group col-12 mb-3">
+                  <label *ngIf="SellRent.value==1">Price (in USD)</label>
+                  <label *ngIf="SellRent.value==2">Rent (in USD)</label>
+                  <input type="text" class="form-control"
+                  formControlName="Price"
+                  [(ngModel)]="propertyView.Price">
+                  <div class="error-block"
+                  *ngIf="Price.invalid && (nextClicked || Price.touched)">
+                    Please select
+                    <span *ngIf="SellRent.value==1;else ShowRent">price</span>
+                    <ng-template #ShowRent>rent</ng-template>
+                  </div>
+                </div>
+
+                <div *ngIf="SellRent.value==2">
+                  <div class="form-group col-12">
+                    <label>Security (in USD)</label>
+                    <input type="text"
+                    formControlName="Security"
+                    class="form-control">
+                  </div>
+
+                  <div class="form-group col-12">
+                    <label>Maintenance (in USD)</label>
+                    <input type="text"
+                    formControlName="Maintenance"
+                    class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-group col-12 mb-3">
+                  <label>Built Area (in Sqr Feet)</label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="propertyView.BuiltArea"
+                  formControlName="BuiltArea">
+                  <div class="error-block"
+                  *ngIf="BuiltArea.invalid && nextClicked">
+                    Please select built up area
+                  </div>
+                </div>
+
+                <div class="form-group col-12 mb-3">
+                  <label>Carpet Area (in Sqr Feet)</label>
+                  <input type="text"
+                  formControlName="CarpetArea"
+                  class="form-control">
+                </div>
+
+                <!-- <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(2, PriceInfo.valid)">Next</button>
+
+                  <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(0, PriceInfo.valid)">Back</button>
+                </div> -->
+
+                <div class="d-flex align-item-center mt-3">
+                  <button class="cssbuttons-io-button" type="button" (click)="selectTab(0, PriceInfo.valid)">
+                    Back
+                    <div class="icon">
+                      <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.828 11l5.364-5.364-1.414-1.414L4 12l7.778 7.778 1.414-1.414L8.828 13H24v-2H8.828z"
+                          fill="currentColor"></path>
+                      </svg>
+                    </div>
+                  </button>
+                  <button class="cssbuttons-io-button ml-1" type="button" (click)="selectTab(2, PriceInfo.valid)">
+                    Next
+                    <div class="icon">
+                      <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                          fill="currentColor"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+            </tab>
+
+            <tab heading="Address" formGroupName="AddressInfo">
+
+              <div class="form-group col-12 mb-3">
+                <label>Floor</label>
+                <input type="text"
+                formControlName="FloorNo"
+                class="form-control">
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <label>Total Floor</label>
+                <input type="text"
+                formControlName="TotalFloor"
+                class="form-control">
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <label>Address</label>
+                <input type="text"
+                class="form-control"
+                formControlName="Address">
+                <div class="error-block"
+                *ngIf="Address.invalid && (nextClicked || Address.touched)">
+                  Please select address
+                </div>
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <label>Landmark</label>
+                <input type="text"
+                formControlName="LandMark"
+                class="form-control">
+              </div>
+
+              <!-- <div class="form-group col-12">
+                <button type="button" class="btn btn-primary btn-block"
+                (click)="selectTab(3, AddressInfo.valid)">Next</button>
+
+                <button type="button" class="btn btn-primary btn-block"
+                (click)="selectTab(1, AddressInfo.valid)">Back</button>
+              </div> -->
+
+              <div class="d-flex align-item-center mt-3">
+                <button class="cssbuttons-io-button" type="button" (click)="selectTab(1, AddressInfo.valid)">
+                  Back
+                  <div class="icon">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.828 11l5.364-5.364-1.414-1.414L4 12l7.778 7.778 1.414-1.414L8.828 13H24v-2H8.828z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </div>
+                </button>
+                <button class="cssbuttons-io-button ml-1" type="button" (click)="selectTab(3, AddressInfo.valid)">
+                  Next
+                  <div class="icon">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+
+            </tab>
+
+            <tab heading="Other Details" formGroupName="OtherInfo">
+              <div class="form-group col-12 mb-3">
+                <p>Ready to Move</p>
+                <div class="btn-group" btnRadioGroup
+                formControlName="RTM">
+                  <label class="btn btn-outline-primary bg-color"
+                  [class.radio-active-gCommunity]="selectedRTMOption === 1" (click)="selectRTMOption(1)"
+                    btnRadio=1 tabindex="0" role="button"
+                    name="RTM">Yes
+                  </label>
+                  <label class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-gCommunity]="selectedRTMOption === 2" (click)="selectRTMOption(2)"
+                    btnRadio=2  tabindex="0" role="button" name="RTM">No
+                  </label>
+                </div>
+                <div class="error-block" *ngIf="RTM.invalid && nextClicked">
+                  Please select ready to move
+                </div>
+              </div>
+
+
+              <div
+              *ngIf="RTM.value==2"
+              class="form-group col-6 mb-3">
+                <label>Possession/Avaialble From</label>
+                <input type="text"
+                class="form-control"
+                formControlName="PossessionOn"
+                bsDatepicker
+                [bsConfig]="{containerClass: 'theme-dark-blue',
+                dateInputFormat: 'DD-MM-YYYY'}">
+              </div>
+
+              <div
+              *ngIf="RTM.value==1"
+              class="form-group col-3 mb-3">
+                <label>Age of Property</label>
+                <input type="text"
+                formControlName="AOP"
+                class="form-control">
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <p>Gated Community</p>
+                <div class="btn-group"
+                btnRadioGroup
+                formControlName="Gated">
+                  <label class="btn btn-outline-primary bg-color mr-2"
+                  [class.radio-active-gCommunity]="selectedGatedCommunityOption === 1"
+                    (click)="selectGatedCommunityOption(1)"
+                  btnRadio=1 tabindex="0" role="button" name="Gated">Yes</label>
+                  <label class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-gCommunity]="selectedGatedCommunityOption === 2"
+                    (click)="selectGatedCommunityOption(2)"
+                  btnRadio=2  tabindex="0" role="button" name="Gated">No</label>
+                </div>
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <p>Main Entrance</p>
+                <div class="btn-group resp-r-btn" btnRadioGroup
+                formControlName="MainEntrance">
+                  <label class="btn btn-outline-primary bg-color "
+                  [class.radio-active-gCommunity]="selectedMainEntranceOption === 1"
+                    (click)="selectMainEntranceOption(1)"
+                  btnRadio=1 tabindex="0" role="button" name="Entrance">East</label>
+                  <label class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-gCommunity]="selectedMainEntranceOption === 2"
+                    (click)="selectMainEntranceOption(2)"
+                  btnRadio=2  tabindex="0" role="button" name="Entrance">West</label>
+                  <label class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-gCommunity]="selectedMainEntranceOption === 3"
+                    (click)="selectMainEntranceOption(3)"
+                  btnRadio=3  tabindex="0" role="button" name="Entrance">South</label>
+                  <label class="btn btn-outline-primary bg-color ml-1"
+                  [class.radio-active-gCommunity]="selectedMainEntranceOption === 4"
+                    (click)="selectMainEntranceOption(4)"
+                  btnRadio=4  tabindex="0" role="button" name="Entrance">North</label>
+                </div>
+              </div>
+
+              <div class="form-group col-12 mb-3">
+                <label>Description</label>
+                <textarea type="text"
+                class="form-control"
+                formControlName="Description"
+                rows="6"></textarea>
+              </div>
+
+              <!-- <div class="form-group col-12">
+                  <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(4, OtherInfo.valid)">Next</button>
+
+                  <button type="button" class="btn btn-primary btn-block"
+                  (click)="selectTab(2, OtherInfo.valid)">Back</button>
+              </div> -->
+
+              <div class="d-flex align-item-center mt-3">
+                <button class="cssbuttons-io-button" type="button" (click)="selectTab(2, OtherInfo.valid)">
+                  Back
+                  <div class="icon">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.828 11l5.364-5.364-1.414-1.414L4 12l7.778 7.778 1.414-1.414L8.828 13H24v-2H8.828z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </div>
+                </button>
+                <button class="cssbuttons-io-button ml-1" type="button" (click)="selectTab(4, OtherInfo.valid)">
+                  Next
+                  <div class="icon">
+                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                        fill="currentColor"></path>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </tab>
+
+            <tab heading="Photos">
+              <div class="form-group col-12 mb-3">
+                <div class="photo-control">
+                    <button class="mt-5" type="button">Upload</button> <br>
+                    This is under construction
+                </div>
+              </div>
+              <div class="form-group col-12">
+                <!-- <button type="button" class="btn btn-primary btn-block"
+                (click)="selectTab(3, true)">Back</button>
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+                <button type="reset" class="btn btn-primary btn-block">Cancel</button> -->
+
+                <div class="d-flex align-item-center mt-3 resp-container-btn">
+                  <button class="cssbuttons-io-button " type="button" (click)="selectTab(3, true)">
+                    Back
+                    <div class="icon">
+                      <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.828 11l5.364-5.364-1.414-1.414L4 12l7.778 7.778 1.414-1.414L8.828 13H24v-2H8.828z"
+                          fill="currentColor"></path>
+                      </svg>
+        
+                    </div>
+                  </button>
+                  <button class="cssbuttons-io-button ml-1 resp-btn" type="reset">
+                    Cancel
+                    <div class="icon">
+                      <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                      </svg>
+        
+                    </div>
+                  </button>
+                  <button class="cssbuttons-io-button ml-1 resp-btn" type="submit">
+                    Submit
+                    <div class="icon">
+                      <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M20 6L9 17l-5-5" fill="currentColor"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </tab>
+          </tabset>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+  <div class="col-4 d-flex justify-content-center resp-right">
+    <div>
+      <h6>View your property</h6>
+      <div>
+        <!-- Using Property Binding wll pass propertyView into Property-Cart Component -->
+        <app-property-cart [property]="propertyView" hideIcons="true"></app-property-cart>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+</div>
